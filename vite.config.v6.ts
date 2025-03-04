@@ -13,7 +13,11 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    open: true
+    open: true,
+    allowedHosts: ["n4py8j-3001.csb.app"]
+  },
+  preview: {
+    allowedHosts: ["n4py8j-4173.csb.app"]
   },
   ssr: {
     noExternal: ["antd-mobile"]
