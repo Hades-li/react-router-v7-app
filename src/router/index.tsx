@@ -1,9 +1,6 @@
 import { createBrowserRouter } from 'react-router'
-import { lazy } from 'react'
 import Layout from '@/layouts'
 
-const Home = lazy(() => import('@/pages/home'))
-const About = lazy(() => import('@/pages/about'))
 
 const router = createBrowserRouter([
   {
@@ -12,13 +9,19 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
-        // lazy: () => import('@/pages/home')
+        async lazy() {
+          return {
+            Component: (await import('@/pages/home')).default
+          }
+        }
       },
       {
         path: 'about',
-        element: <About />,
-        // lazy: () => import('@/pages/about')
+        async lazy() {
+          return {
+            Component: (await import('@/pages/about')).default
+          }
+        }
       }
     ]
   }
